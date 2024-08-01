@@ -71,7 +71,10 @@ export const CartItem: FC<ICartItem> = ({
           })}
         >
           <span className={styles.name}>{title}</span>
-          <span className={styles.price}>{price} $</span>
+          <span className={styles.price}>
+            {price}
+            {"\u00A0"}$
+          </span>
         </div>
       </NavLink>
       {count > 0 ? (
