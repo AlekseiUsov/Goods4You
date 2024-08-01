@@ -1,0 +1,36 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--red);
+  border-radius: 4px;
+  color: var(--white);
+  font-size: 16px;
+
+  &:hover {
+    background-color: var(--dark-red);
+  }
+
+  &:disabled {
+    background-color: var(--pink);
+  }
+
+  &:focus {
+    background-color: var(--dark-red);
+  }
+}
+
+.hasText {
+  width: 176px;
+  height: 62px;
+}
+
+.smallIcon {
+  min-width: 50px;
+  height: 50px;
+}
+
+.mediumIcon {
+  min-width: 62px;
+  height: 62px;
+}

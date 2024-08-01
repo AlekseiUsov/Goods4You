@@ -1,0 +1,23 @@
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .inner {
+    position: relative;
+    text-align: center;
+    width: 50px;
+
+    .error {
+      position: absolute;
+      color: var(--red);
+      top: 0;
+      right: 50%;
+      transform: translate(50%, 100%);
+    }
+  }
+}
+
+.blue {
+  background-color: var(--grey);
+}

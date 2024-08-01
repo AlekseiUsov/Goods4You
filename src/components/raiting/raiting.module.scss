@@ -1,0 +1,14 @@
+.rate {
+  display: flex;
+  gap: 8px;
+
+  svg {
+    fill: var(--grey-two);
+  }
+
+  .highlighted {
+    svg {
+      fill: var(--red);
+    }
+  }
+}

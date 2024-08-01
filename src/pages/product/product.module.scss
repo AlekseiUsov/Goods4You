@@ -1,0 +1,137 @@
+.product {
+  margin-top: 50px;
+  display: flex;
+  gap: 40px;
+
+  @media (max-width: 880px) {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  h1 {
+    font-weight: 600;
+  }
+
+  .gallery {
+    max-width: 590px;
+    margin-bottom: 155px;
+
+    .otherImages {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+
+      .active {
+        position: relative;
+        &::before {
+          display: block;
+          width: 104.5px;
+          height: 104.5px;
+          content: "";
+          top: 0;
+          left: 0;
+          position: absolute;
+          border: 3px solid var(--grey);
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  .info {
+    flex-grow: 1;
+
+    .inner {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 18px;
+      gap: 10px;
+    }
+
+    .categoty {
+      display: flex;
+      gap: 5px;
+      color: var(--grey-three);
+      font-size: 16px;
+    }
+
+    .availability {
+      padding: 13px 0px;
+      margin-top: 29px;
+      border-top: 1px solid var(--grey);
+      border-bottom: 2px solid var(--grey);
+      color: var(--red);
+      font-weight: 500;
+      font-size: 18px;
+    }
+
+    .description {
+      margin-top: 23px;
+      font-size: 18px;
+      line-height: 30px;
+      color: var(--dark-grey);
+    }
+
+    .delivery {
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--dark-grey);
+    }
+
+    .block {
+      margin-top: 23px;
+      display: flex;
+      flex-wrap: wrap;
+      border-radius: 6px;
+      background-color: rgba(0, 0, 0, 0.04);
+      padding: 12px;
+      color: car(--dark-grey);
+
+      .price {
+        display: flex;
+        flex-direction: column;
+        padding: 0 24px 0 20px;
+        border-right: 1px solid var(--grey-two);
+      }
+
+      .total {
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 40px;
+        color: var(--dark-grey);
+      }
+
+      .discountPrice {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--grey-three);
+        text-decoration: line-through;
+      }
+
+      .discount {
+        align-items: start;
+        padding: 20px 20px 20px 25px;
+        font-size: 16px;
+        line-height: 24px;
+        flex-grow: 1;
+      }
+
+      .discountValue {
+        font-weight: 600;
+        margin-left: 8px;
+      }
+
+      .button {
+        flex-grow: 1;
+      }
+    }
+  }
+}
