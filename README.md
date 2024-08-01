@@ -1,3 +1,3 @@
 # Goods4you
-login: liamg
+login: liamg\
 password: liamgpass
