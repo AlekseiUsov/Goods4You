@@ -51,7 +51,6 @@ export const Catalog = () => {
   ] = catalogApi.useLazyFetchProductsQuery();
   // store
   const { cart } = useAppSelector(cartSelector);
-
   const dispatch = useAppDispatch();
 
   const addItems = async () => {

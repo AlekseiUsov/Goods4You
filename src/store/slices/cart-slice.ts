@@ -87,7 +87,7 @@ type TInitialState = {
   isUpdateLoading: boolean;
   isLoading: boolean;
   error: undefined | string;
-  updateError: undefined | string;
+  updateError: undefined | boolean;
   updatedProduct: null | number;
 };
 
@@ -134,9 +134,9 @@ const cartSlice = createSlice({
       state.isUpdateLoading = false;
       state.cart = action.payload;
     });
-    builder.addCase(updateCart.rejected, (state, action) => {
+    builder.addCase(updateCart.rejected, (state) => {
       state.isUpdateLoading = false;
-      state.updateError = action.error.message;
+      state.updateError = true;
     });
   },
 });

@@ -83,8 +83,13 @@ export const CatalogItem: FC<ICartItem> = ({
           <Button
             variant="icon"
             ariaLabel={`добавить ${title} в корзину`}
+            isLoading={loading}
+            isError={error}
             type="icon"
-            onClick={() => setCount(count + 1)}
+            onClick={() => {
+              setCount(count + 1);
+              itemCounter();
+            }}
           >
             {Cart}
           </Button>
