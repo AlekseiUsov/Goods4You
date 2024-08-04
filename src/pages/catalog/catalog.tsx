@@ -62,8 +62,12 @@ export const Catalog = () => {
       if (cart) {
         const adaptedData = getItemsQuantity(data.products, cart.products);
         setItems([...items, ...adaptedData]);
-        if (data.total <= items.length + 12) {
+        const limit = data.total - items.length;
+        console.log(adaptedData.length);
+        if (limit <= 12 || adaptedData.length < 12) {
           setIsVisibleBotton(false);
+        } else {
+          setIsVisibleBotton(true);
         }
       }
     } catch (error) {
@@ -81,6 +85,9 @@ export const Catalog = () => {
       const { products } = data;
       const adaptedData = getItemsQuantity(products, cart.products);
       setItems(adaptedData);
+      if (value === "") {
+        setIsVisibleBotton(true);
+      }
     }
     if (error && "status" in error && error.status === 401) {
       dispatch(catalogApi.util.resetApiState());
