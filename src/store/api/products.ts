@@ -10,7 +10,7 @@ export const catalogApi = createApi({
     fetchProducts: builder.query({
       query: ({ search, count }) => ({
         method: "GET",
-        url: `auth/${PRODUCTS}/search?q=${search}&limit=${12 * count}`,
+        url: `auth/${PRODUCTS}/search?q=${search}&limit=${12}&skip=${count * 12}`,
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "content-type": "application/json",

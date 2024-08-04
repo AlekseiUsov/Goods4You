@@ -38,40 +38,56 @@ export const Catalog = () => {
   //button
   const [isVisibleBotton, setIsVisibleBotton] = useState(true);
   // items
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [items, setItems] = useState<Array<ICartItem>>([]);
   // data
   const { data, isLoading, error } = catalogApi.useFetchProductsQuery({
     search: value,
     count: count,
   });
+  const [
+    fetchProducts,
+    { isLoading: loadingNewItems, isError: isErrorNewItems },
+  ] = catalogApi.useLazyFetchProductsQuery();
   // store
   const { cart } = useAppSelector(cartSelector);
 
   const dispatch = useAppDispatch();
 
+  const addItems = async () => {
+    try {
+      const data = await fetchProducts({
+        search: value,
+        count: count + 1,
+      }).unwrap();
+      if (cart) {
+        const adaptedData = getItemsQuantity(data.products, cart.products);
+        setItems([...items, ...adaptedData]);
+        if (data.total <= items.length + 12) {
+          setIsVisibleBotton(false);
+        }
+      }
+    } catch (error) {
+      // ошибку здесь не обрабатываем
+    }
+  };
+
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
-    setCount(1);
+    setCount(0);
   };
 
   useEffect(() => {
-    if (data && cart) {
-      const { products, total } = data;
+    if (count === 0 && data && cart) {
+      const { products } = data;
       const adaptedData = getItemsQuantity(products, cart.products);
       setItems(adaptedData);
-
-      if (total === items.length) {
-        setIsVisibleBotton(false);
-      } else {
-        setIsVisibleBotton(true);
-      }
     }
     if (error && "status" in error && error.status === 401) {
       dispatch(catalogApi.util.resetApiState());
       dispatch(resetUser());
     }
-  }, [data, value, cart, items.length, dispatch, error]);
+  }, [dispatch, error, data, count, cart, value]);
 
   return (
     <>
@@ -122,9 +138,13 @@ export const Catalog = () => {
                 {isVisibleBotton && items.length && (
                   <Button
                     variant="text"
-                    isLoading={isLoading}
+                    isLoading={loadingNewItems}
+                    isError={isErrorNewItems}
                     additionalClass={styles.button}
-                    onClick={() => setCount((prev) => prev + 1)}
+                    onClick={() => {
+                      setCount((prev) => prev + 1);
+                      addItems();
+                    }}
                   >
                     Show more
                   </Button>

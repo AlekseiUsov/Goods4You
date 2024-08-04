@@ -13,6 +13,7 @@ export interface IButtonProps
   children: string | ReactNode;
   onClick?: (() => void) | ((e: SyntheticEvent) => void);
   isLoading?: boolean;
+  isError?: boolean;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -24,6 +25,7 @@ export const Button: FC<IButtonProps> = ({
   additionalClass,
   onClick,
   isLoading,
+  isError,
 }) => {
   return (
     <button
@@ -38,7 +40,9 @@ export const Button: FC<IButtonProps> = ({
         [styles.disabled]: disabled,
       })}
     >
-      {isLoading ? "loading" : children}
+      {isLoading && "loading"}
+      {isError && "error"}
+      {!isError && !isLoading && children}
     </button>
   );
 };
