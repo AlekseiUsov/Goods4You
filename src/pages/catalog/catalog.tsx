@@ -68,7 +68,7 @@ export const Catalog = () => {
         }
       }
     } catch (error) {
-      // ошибку здесь не обрабатываем
+      // ошибку здесь не обрабатываем т.к. используем из хука useLazyFetchProductsQuery
     }
   };
 
