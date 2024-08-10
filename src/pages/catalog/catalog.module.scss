@@ -91,9 +91,9 @@
 
   .list {
     margin-top: 45px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px 35px;
 
     @media (max-width: 880px) {
