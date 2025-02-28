@@ -27,7 +27,7 @@ export const Login = () => {
     try {
       if (formValues.username && formValues.password) {
         const user = await fetchUser(formValues).unwrap();
-        localStorage.setItem("token", user.token);
+        localStorage.setItem("token", user.accessToken);
         setLoading(false);
         dispatch(setUser(user));
       }
